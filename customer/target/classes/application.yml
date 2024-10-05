@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    password: doukoure2711
+    url: jdbc:postgresql://localhost:5432/customer
+    username: amigoscode
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  application:
+    title: customer
+    version: 4.0.0
+
+  spring-boot:
+    version: 3.3.4
