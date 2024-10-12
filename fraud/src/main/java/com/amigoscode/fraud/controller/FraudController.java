@@ -23,19 +23,6 @@ public class FraudController {
 
     private final FraudService fraudService;
 
-//    @PostMapping("/{customerId}/save")
-//    public ResponseEntity<HttpResponse> saveFraud(@PathVariable(name = "customerId") Integer customerId) {
-//        log.info("new Customer registration {}",customerId);
-//        return ResponseEntity.ok().body(
-//                HttpResponse.builder()
-//                        .timeStamp(now().toString())
-//                        .data(Map.of("fraud", fraudService.saveFraud(customerId)))
-//                        .message("Fraud Saved Successully ")
-//                        .status(CREATED)
-//                        .statusCode(CREATED.value())
-//                        .build());
-//    }
-
     @GetMapping("/{customerId}")
     public ResponseEntity<Boolean> isFraudSter(@PathVariable(name = "customerId") Integer customerId) {
         fraudService.saveFraud(customerId);

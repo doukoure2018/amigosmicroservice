@@ -3,6 +3,3 @@
 |  |    |  ||  |(  .-''-.  .-'| .-. ||        | .-. :|  .--'
 '  '--'\'  ''  '.-'  `) |  |  ' '-' '|  |  |  \   --.|  |
  `-----' `----' `----'  `--'   `---' `--`--`--'`----'`--'
-
-${spring.application.title} ${spring.application.version}
-${spring.spring-boot.version}

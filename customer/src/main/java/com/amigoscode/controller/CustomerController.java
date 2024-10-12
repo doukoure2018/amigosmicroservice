@@ -24,16 +24,28 @@ public class CustomerController {
     private final CustomerService customerService;
     @PostMapping("/save")
     public ResponseEntity<HttpResponse> saveUser(@RequestBody CustomerDto customerDto) throws Exception {
-        log.info("new Customer registration {}",customerDto.getId());
-        return ResponseEntity.ok().body(
-                HttpResponse.builder()
-                        .timeStamp(now().toString())
-                        .data(Map.of("customer", customerService.create(customerDto)))
-                        .message(String.format("User account created for user %s", customerDto.getFirstName()))
-                        .status(CREATED)
-                        .statusCode(CREATED.value())
-                        .build());
+        // Log the start of the request
+        log.info("Attempting to register a new Customer with ID: {}", customerDto.getId());
+        // Proceed with the registration and log the outcome
+        try {
+            CustomerDto createdCustomer = customerService.create(customerDto);
+            log.info("Successfully created new Customer with ID: {}", createdCustomer.getId());
+            return ResponseEntity.ok().body(
+                    HttpResponse.builder()
+                            .timeStamp(now().toString())
+                            .data(Map.of("customer", createdCustomer))
+                            .message(String.format("User account created for user %s", customerDto.getFirstName()))
+                            .status(CREATED)
+                            .statusCode(CREATED.value())
+                            .build()
+            );
+        } catch (Exception e) {
+            // Log the error and rethrow the exception
+            log.error("Error occurred during customer registration: {}", e.getMessage());
+            throw e;
+        }
     }
+
 
     @GetMapping("")
     public ResponseEntity<HttpResponse> getAllCustomers() {
